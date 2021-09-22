@@ -1,0 +1,235 @@
+❯ picocom -b 115200 /dev/ttyUSB0
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+flash read err, 1000
+ets_main.c 371 
+ets Jun  8 2016 00:22:57
+
+rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:6808
+load:0x40078000,len:13340
+load:0x40080400,len:3736
+entry 0x4008067c
+I (70) boot: Chip Revision: 1
+I (70) boot_comm: chip revision: 1, min. bootloader chip revision: 0
+I (40) boot: ESP-IDF v4.0 2nd stage bootloader
+I (40) boot: compile time 14:17:51
+I (40) boot: Enabling RNG early entropy source...
+I (44) boot: SPI Speed      : 40MHz
+I (48) boot: SPI Mode       : DIO
+I (52) boot: SPI Flash Size : 8MB
+I (56) boot: Partition Table:
+I (60) boot: ## Label            Usage          Type ST Offset   Length
+I (67) boot:  0 nvs              WiFi data        01 02 00009000 00050000
+I (75) boot:  1 otadata          OTA data         01 00 00059000 00002000
+I (82) boot:  2 phy_init         RF data          01 01 0005b000 00001000
+I (90) boot:  3 ota_0            OTA app          00 10 00060000 00190000
+I (97) boot:  4 ota_1            OTA app          00 11 001f0000 00190000
+I (105) boot:  5 storage          Unknown data     01 82 00380000 00060000
+I (112) boot: End of partition table
+I (116) boot_comm: chip revision: 1, min. application chip revision: 0
+I (124) esp_image: segment 0: paddr=0x00060020 vaddr=0x3f400020 size=0x338cc (211148) map
+I (213) esp_image: segment 1: paddr=0x000938f4 vaddr=0x3ffbdb60 size=0x03858 ( 14424) load
+I (219) esp_image: segment 2: paddr=0x00097154 vaddr=0x40080000 size=0x00400 (  1024) load
+I (220) esp_image: segment 3: paddr=0x0009755c vaddr=0x40080400 size=0x08ab4 ( 35508) load
+I (244) esp_image: segment 4: paddr=0x000a0018 vaddr=0x400d0018 size=0xef368 (979816) map
+I (617) esp_image: segment 5: paddr=0x0018f388 vaddr=0x40088eb4 size=0x139c4 ( 80324) load
+I (669) boot: Loaded app from partition at offset 0x60000
+I (669) boot: Disabling RNG early entropy source...
+I (670) psram: This chip is ESP32-D0WD
+I (674) spiram: Found 64MBit SPI RAM device
+I (678) spiram: SPI RAM mode: flash 40m sram 40m
+I (684) spiram: PSRAM initialized, cache is in low/high (2-core) mode.
+I (691) cpu_start: Pro cpu up.
+I (695) cpu_start: Application information:
+I (700) cpu_start: Project name:     mqtt_ssl_v2
+I (705) cpu_start: App version:      Vue2-1594339310-2-g45126ee0-dir
+I (712) cpu_start: Compile time:     Jul 13 2020 14:11:45
+I (718) cpu_start: ELF file SHA256:  95977598e4643216...
+I (724) cpu_start: ESP-IDF:          v4.0
+I (729) cpu_start: Starting app cpu, entry point is 0x400812e8
+I (0) cpu_start: App cpu up.
+I (1616) spiram: SPI SRAM memory test OK
+I (1617) heap_init: Initializing. RAM available for dynamic allocation:
+I (1617) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM
+I (1623) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM
+I (1629) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM
+I (1636) heap_init: At 3FFBDB5C len 00000004 (0 KiB): DRAM
+I (1642) heap_init: At 3FFD0908 len 0000F6F8 (61 KiB): DRAM
+I (1648) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (1654) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (1661) heap_init: At 4009C878 len 00003788 (13 KiB): IRAM
+I (1667) cpu_start: Pro cpu start user code
+I (1672) spiram: Adding pool of 4096K of external SPI memory to heap allocator
+I (1694) spi_flash: detected chip: gd
+I (1694) spi_flash: flash io: dio
+I (1694) cpu_start: Starting scheduler on PRO CPU.
+I (0) cpu_start: Starting scheduler on APP CPU.
+I (2078) Main: [APP] Startup..
+I (2078) Main: [APP] Free memory: 4380884 bytes
+I (2078) Main: [APP] IDF version: v4.0
+I (2078) Settings: Read FACTORYCODE from nvs 2035A04B4, ESP_OK
+I (2078) Main: [APP] DeviceID=A2035A04B4B8F009841CC8
+I (2088) Main: [APP] BUILD_DATE=Mon Jul 13 20:14:22 UTC 2020
+I (2098) Main: [APP] Project name=mqtt_ssl_v2
+I (2098) Main: Tickrate: 10
+I (2108) Settings: Read: TEST_MODE: 1 (ESP_OK)
+I (8268) Main: [APP] QueryInfo = {"free_mem":4380744,"cpu_stats":"main           \t1020879001\t\t39%\r\nIDLE1          \t996829744\t\t38%\r\nIDLE0          \t194206148\t\t7%\r\nTmr Svc        \t9970\t\t<1%\r\nesp_timer      \t5590\t\t<1%\r\nipc1           \t101491466\t\t3%\r\nipc0           \t271593152\t\t10%\r\n","uptime":6380,"build_datetime":"Mon Jul 13 20:14:22 UTC 2020","build_commit":"45126ee0","response":"query_info","firmware_version":"Vue2-1594671260","idf_version":"v4.0","device_id":"A2035A04B4B8F009841CC8","upload_frequency_seconds":1,"solar_enable":0,"solar_reverse":0,"wifi_rssi":0,"wifi_authmode":2,"wifi_channel":255}
+I (8318) Firmware Verification: Init Firmware Verification
+I (8328) Firmware Verification: Image Valid
+I (8328) CT: Starting CT task
+I (8338) MQTTdebug: mqtt debug lock init
+I (8338) Measure: Measure init
+E (8338) V2Nvs: Read cumulative nvs failed. ESP_ERR_NVS_NOT_FOUND
+E (8348) V2Nvs: Read mainctvmap nvs failed. ESP_ERR_NVS_NOT_FOUND
+I (8348) calibration: Calibration row request: 0
+E (8358) V2Nvs: Read CalRow0 nvs failed. ESP_ERR_NVS_NOT_FOUND
+E (8368) calibration: Load calibration fail, using defaults
+I (8368) calibration: Set calibration, channel: 0, val: 0.022609
+I (8378) calibration: Set calibration, channel: 1, val: 0.022025
+I (8378) calibration: Set calibration, channel: 2, val: 0.022000
+I (8388) CT: Starting CT measurement system
+I (8398) CT: Default V_MULT: 0.022000
+I (9328) WiFiTask: Starting thread Wifi_Task()
+I (9328) WiFiTask: [APP] DeviceID=A2035A04B4B8F009841CC8
+I (9338) wifi: wifi driver task: 3ffd6aa0, prio:23, stack:3584, core=0
+I (9338) system_api: Base MAC address is not set, read default base MAC address from BLK0 of EFUSE
+I (9338) system_api: Base MAC address is not set, read default base MAC address from BLK0 of EFUSE
+I (9368) wifi: wifi firmware version: 581f422
+I (9368) wifi: config NVS flash: enabled
+I (9368) wifi: config nano formating: disabled
+I (9368) wifi: Init dynamic tx buffer num: 32
+I (9378) wifi: Init data frame dynamic rx buffer num: 32
+I (9378) wifi: Init management frame dynamic rx buffer num: 32
+I (9388) wifi: Init management short buffer num: 32
+I (9388) wifi: Init static rx buffer size: 1600
+I (9398) wifi: Init static rx buffer num: 10
+I (9398) wifi: Init dynamic rx buffer num: 32
+I (9498) phy: phy_version: 4180, cb3948e, Sep 12 2019, 16:39:13, 0, 0
+I (9498) wifi: mode : sta (b8:f0:09:84:1c:c8)
+I (9498) wifi: Set ps type: 0
+
+I (9498) WiFiTask: Wifi Task Loop Start
+I (9518) WiFiTask: CHANGE STATE: OLD=Init NEW=Provisioned
+I (9528) WiFiTask: CHANGE STATE: OLD=Provisioned NEW=StartProvisioning
+I (9528) Provisioning: Prov_BLEStartProvisioning: starting
+I (9528) Provisioning: Prov_BLEStartService
+I (9528) BTDM_INIT: BT controller compile version [79dd6f1]
+I (9538) system_api: Base MAC address is not set, read default base MAC address from BLK0 of EFUSE
+I (9638) MQTTdebug: buffer flush signal
+I (9638) CT: Calculating instantaneous and cumulative readings
+I (9638) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (9638) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (9648) CT: Calibration detection
+I (9648) calibration: Calibration row request: 3
+E (9658) V2Nvs: Read CalRow3 nvs failed. ESP_ERR_NVS_NOT_FOUND
+E (9658) calibration: Load calibration fail, using defaults
+I (9668) calibration: Set calibration, channel: 0, val: 0.022534
+I (9678) calibration: Set calibration, channel: 1, val: 0.022000
+I (9678) calibration: Set calibration, channel: 2, val: 0.022000
+I (9888) Provisioning: Provisioning started with BLE devname : PROV_841CC8v
+I (9888) Provisioning: Prov_BLEStartProvisioning: BLE Provisioning started
+I (9888) WiFiTask: Wifi onboard window end
+I (9908) WiFiTask: CHANGE STATE: OLD=StartProvisioning NEW=Provisioning
+I (9918) WiFiTask: CHANGE STATE: OLD=Provisioning NEW=Provisioned
+I (9918) WiFiTask: Wifi connect to: emporia
+I (9918) Provisioning: Waiting to Connect
+I (9928) CT: Calculating instantaneous and cumulative readings
+I (9928) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (9938) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (10878) CT: Calculating instantaneous and cumulative readings
+I (10878) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (10878) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (11358) MQTTdebug: buffer flush signal
+I (12058) CT: Calculating instantaneous and cumulative readings
+I (12058) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (12068) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (13008) CT: Calculating instantaneous and cumulative readings
+I (13008) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (13018) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (13058) Provisioning: DISCONNECTED WIFI EVENT
+I (13058) MQTTComms: MQTTComms_StopClient
+I (13488) MQTTdebug: buffer flush signal
+I (13958) CT: Calculating instantaneous and cumulative readings
+I (13958) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (13958) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (14908) CT: Calculating instantaneous and cumulative readings
+I (14908) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (14908) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (15388) MQTTdebug: buffer flush signal
+I (16088) CT: Calculating instantaneous and cumulative readings
+I (16088) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (16098) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (17038) CT: Calculating instantaneous and cumulative readings
+I (17038) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (17038) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (17518) MQTTdebug: buffer flush signal
+I (17988) CT: Calculating instantaneous and cumulative readings
+I (17988) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (17988) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (18938) CT: Calculating instantaneous and cumulative readings
+I (18938) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (18938) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (19648) MQTTdebug: buffer flush signal
+I (19878) CT: Calculating instantaneous and cumulative readings
+I (19878) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (19888) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (21068) CT: Calculating instantaneous and cumulative readings
+I (21068) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (21068) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (21548) MQTTdebug: buffer flush signal
+I (22018) CT: Calculating instantaneous and cumulative readings
+I (22018) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (22018) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (22958) CT: Calculating instantaneous and cumulative readings
+I (22958) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (22968) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (23678) MQTTdebug: buffer flush signal
+I (23908) CT: Calculating instantaneous and cumulative readings
+I (23908) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (23918) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (24928) WiFiTask: Wifi connect to: emporia
+I (24928) Provisioning: Waiting to Connect
+I (25098) CT: Calculating instantaneous and cumulative readings
+I (25098) Measure: Cal adjust: nan, 0.000000, 0.000000, 0.000000
+I (25098) Measure: Power Adjusted: 0.000000, 0.000000, 0.000000
+I (25808) MQTTdebug: buffer flush signal
