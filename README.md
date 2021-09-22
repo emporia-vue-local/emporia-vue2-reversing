@@ -1,7 +1,9 @@
 This is a companion repo to my post, ["Reverse-engineering the Emporia Vue
-2"][post].
+2"][post]. If you haven't already seen that, it may provide useful background.
 
 It contains no flash dumps, ELF files, or any other copyrighted material.
+
+Any code written by myself is licensed under the MIT license.
 
 [post]: https://flaviutamas.com/2021/reversing-emporia-vue-2
 
