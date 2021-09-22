@@ -1,0 +1,3 @@
+[submodule "esp32_image_parser"]
+	path = esp32_image_parser
+	url = ./esp32_image_parser
