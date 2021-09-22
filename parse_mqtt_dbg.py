@@ -252,6 +252,9 @@ def json_serializer(obj):
 def main(args):
     if len(args) < 2:
         print(f"{args[0]} <mqtt_input> <json_output>")
+        print("")
+        print(f"  mqtt_input: source of mqtt messages. may be /dev/stdin")
+        print(f"      tip, try mosquitto_sub -h ... -t prod/minions/emporia/ct/v1/.../debug/v2")
         return 1
 
     token = "<snip>"
