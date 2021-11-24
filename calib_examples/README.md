@@ -1,0 +1,2 @@
+- `flaviu-first.bin` is the first entry from Flaviu's NVS `cal_data`
+- `flaviu-second.bin` is the second entry from Flaviu's NVS `cal_data`
