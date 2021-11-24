@@ -135,9 +135,9 @@ The AC data includes voltage and phase information for the AC electricity, which
 
 | Field           | Size    | Type     | Description                        |
 | --------------- | ------- | -------- | ---------------------------------- |
-| Phase 1 Voltage | 2 bytes | `uint16` | AC voltage measured for phase 1    |
-| Phase 2 Voltage | 2 bytes | `uint16` | AC voltage measured for phase 2    |
-| Phase 3 Voltage | 2 bytes | `uint16` | AC voltage measured for phase 3    |
+| Phase 1 Voltage | 2 bytes | `int16`  | AC voltage measured for phase 1    |
+| Phase 2 Voltage | 2 bytes | `int16`  | AC voltage measured for phase 2    |
+| Phase 3 Voltage | 2 bytes | `int16`  | AC voltage measured for phase 3    |
 | Freqency (Hz)   | 2 bytes | `uint16` | AC frequency measured (all phases) |
 | Phase 2 degrees | 2 bytes | `uint16` | Degrees from phase 1 of phase 2    |
 | Phase 3 degrees | 2 bytes | `uint16` | Degrees from phase 1 of phase 3    |
