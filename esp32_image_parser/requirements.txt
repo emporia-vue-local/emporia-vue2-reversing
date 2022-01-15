@@ -1,0 +1,3 @@
+makeelf
+esptool
+hexdump
