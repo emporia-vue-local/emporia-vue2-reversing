@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
 
-import sys
 import json
-import base64
+import sys
 from dataclasses import dataclass
 from enum import Enum
-
 # https://github.com/espressif/esp-idf/blob/c69f0ec3292de2b9df5554405744296333d0feb2/components/nvs_flash/src/nvs_page.hpp#L36-L39
+from typing import Any, TextIO, List, Optional
+
 PSB_INIT = 0x1
 PSB_FULL = 0x2
 PSB_FREEING = 0x4
@@ -68,31 +68,32 @@ class EntryState(Enum):
         }[text]
 
 
-@dataclass
+@dataclass(frozen=True)
 class Entry:
-    state: EntryState
-    ns_index: int
     ns_name: str
-    typ: str
-    span: int
-    chunk_index: int
-
     key: str
+
+    typ: str
     data: any
 
+    state: EntryState = EntryState.WRITTEN
+    ns_index: Optional[int] = None
+    span: Optional[int] = None
+    chunk_index: Optional[int] = None
 
-@dataclass
+
+@dataclass(frozen=True)
 class Page:
     state: PageState
     seq_no: int
     version: int
 
-    entries: list[Entry]
+    entries: List[Entry]
 
 
-def load_pages_from_json(json):
+def load_nvsjson(data: Any) -> List[Page]:
     result = []
-    for page in json:
+    for page in data:
         result.append(
             Page(
                 state=PageState.from_text(page["page_state"]),
@@ -117,7 +118,17 @@ def load_pages_from_json(json):
     return result
 
 
-def list_namespaces(entries: list[Entry]):
+def get_entries(pages: List[Page]) -> List[Entry]:
+    entries = []
+    for page in pages:
+        entries.extend(page.entries)
+    # exclude BLOB_IDX since it is just the length of the corresponding BLOB
+    # Not sure why BLOB is being excluded, but they don't appear in the
+    # datasets I care about
+    return [e for e in entries if e.typ not in {"BLOB", "BLOB_IDX"}]
+
+
+def _list_namespaces(entries: List[Entry]):
     namespaces = {}
     for e in entries:
         if e.ns_name not in namespaces:
@@ -125,7 +136,15 @@ def list_namespaces(entries: list[Entry]):
     return [kv[0] for kv in sorted(namespaces.items(), key=lambda kv: kv[1])]
 
 
-def map_to_csv(e: Entry):
+def _namespace_to_id(namespace: str, entries: List[Entry]) -> int:
+    namespaces = {}
+    for e in entries:
+        if e.ns_name not in namespaces:
+            namespaces[e.ns_name] = e.ns_index
+    return namespaces[namespace]
+
+
+def _map_to_csv(e: Entry):
     if e.state != EntryState.WRITTEN:
         return ""
 
@@ -135,30 +154,59 @@ def map_to_csv(e: Entry):
         data = ("base64", e.data)
     elif e.typ == "STR":
         data = ("string", e.data)
+    else:
+        assert False, f"Unknown type {e.typ}"
 
     return e.key + ",data," + data[0] + "," + data[1] + "\n"
 
 
-def main(args):
+def nvsjson_to_csv(entries: List[Entry], output: TextIO):
+    namespaces = _list_namespaces(entries)
+
+    output.write("key,type,encoding,value\n")
+    for ns in namespaces:
+        ns_entries = [e for e in entries if e.ns_name == ns]
+        if ns:
+            output.write(ns + ",namespace,,\n")
+        for e in ns_entries:
+            output.write(_map_to_csv(e))
+
+
+def set_entry(new_entry: Entry, entries: List[Entry]) -> List[Entry]:
+    """
+    Set the entry in the list of entries. For useful results, `ns_name`,
+    `key`, `typ` and `data` must be set.
+
+    :param new_entry:
+    :param entries:
+    :return:
+    """
+    new_entries = [e for e in entries
+                   if not (e.key == new_entry.key and e.ns_name == new_entry.ns_name)]
+    new_entries.append(Entry(
+        **{
+            **new_entry.__dict__,
+            'state': EntryState.WRITTEN,
+            'ns_index': _namespace_to_id(new_entry.ns_name, entries)
+        }))
+    return new_entries
+
+
+def _main(args):
+    if len(args) != 2:
+        print("Usage: python3 nvs_dump.py <nvs_dump.json> <output.csv>")
+        print()
+        print("Dumps the contents of a NVS dump to a CSV file usable with "
+              "nvs_partition_gen.")
+
     with open(args[1], "r") as file:
-        pages = load_pages_from_json(json.load(file))
+        pages = load_nvsjson(json.load(file))
 
-    entries = []
-    for page in pages:
-        entries.extend(page.entries)
+    entries = get_entries(pages)
 
-    entries = [e for e in entries if e.typ not in {"BLOB", "BLOB_IDX"}]
-
-    namespaces = list_namespaces(entries)
     with open(args[2], "w") as out_file:
-        out_file.write("key,type,encoding,value\n")
-        for ns in namespaces:
-            ns_entries = [e for e in entries if e.ns_name == ns]
-            if ns:
-                out_file.write(ns + ",namespace,,\n")
-            for e in ns_entries:
-                out_file.write(map_to_csv(e))
+        nvsjson_to_csv(entries, out_file)
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(_main(sys.argv))
