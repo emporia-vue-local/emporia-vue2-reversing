@@ -1,0 +1,14 @@
+[Unit]
+Description=Exports the Emporia Vue 2's debug MQTT topic to InfluxDB
+Requires=influxdb.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=nobody
+ExecStart=/bin/bash -c 'mosquitto_sub -h 192.168.86.26 -t prod/minions/emporia/ct/v1/A2035A04B4B8F009841CC8/debug/v2 | /usr/bin/parse_mqtt_dbg.py /dev/stdin'
+
+[Install]
+WantedBy=multi-user.target
