@@ -216,7 +216,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "vue2_psu.kicad_pro",
+    "filename": "vue2.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -286,8 +286,20 @@
   },
   "sheets": [
     [
-      "d51dca46-b998-4def-a5c3-d904bf8a824b",
+      "af6b61cf-8066-4d46-a6db-18b5b8efe7cd",
       ""
+    ],
+    [
+      "65a842fc-f32e-4600-a8fe-18e2e4d39917",
+      "PSU"
+    ],
+    [
+      "fc32547d-ee43-45e0-8905-6e5a5a389023",
+      "Regulators"
+    ],
+    [
+      "ea7dd49e-d8fe-4ba5-b624-35c753d81639",
+      "ADC"
     ]
   ],
   "text_variables": {}
